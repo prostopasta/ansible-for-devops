@@ -28,6 +28,34 @@ Note: *If there are any errors during the course of running `vagrant up`, and it
 
 Read through the third chapter of [Ansible for DevOps](https://www.ansiblefordevops.com/) for details.
 
-## About the Author
 
-This project was created by [Jeff Geerling](https://www.jeffgeerling.com/) as an example for [Ansible for DevOps](https://www.ansiblefordevops.com/).
+ansible multi -a "hostname"
+ansible multi -a "hostname" -f 1
+
+ansible multi -a "df -h"
+ansible multi -a "free -m"
+
+ansible multi -m setup
+
+ansible multi -a "date"
+ansible multi -a "bash -c 'rm /etc/localtime && cp /usr/share/zoneinfo/Asia/Riyadh /etc/localtime'" -b
+ansible multi -a "date" --limit "192.168.60.4"
+ansible multi -a "free -h" --limit "*.4"
+
+#### Other commands from the book:
+ansible multi -b -m yum -a "name=chrony state=present"
+ansible multi -b -m service -a "name=chronyd state=started enabled=yes"
+ansible multi -b -m service -a "name=chronyd state=stopped"
+ansible multi -b -m service -a "name=chronyd state=started"
+
+ansible app -b -m yum -a "name=mysql-python state=present"
+ansible app -b -m yum -a "name=python-setuptools state=present"
+ansible app -b -m easy_install -a "name=django"
+
+
+ansible multi -m stat -a "path=/etc/environment"
+ansible multi -m copy -a "src=/etc/hosts dest=/tmp/hosts"
+ansible multi -b -m fetch -a "src=/etc/hosts dest=/tmp"
+ansible multi -m file -a "dest=/tmp/test mode=644 state=directory"
+ansible multi -m file -a "dest=/tmp/test state=absent"
+ansible multi -b -B 3600 -P 0 -a "yum -y update"
