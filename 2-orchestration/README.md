@@ -48,6 +48,15 @@ ansible multi -b -m service -a "name=chronyd state=started enabled=yes"
 ansible multi -b -m service -a "name=chronyd state=stopped"
 ansible multi -b -m service -a "name=chronyd state=started"
 
+# Episode 3 - Intro to Playbooks
+ansible multi -b -B 3600 -P 0 -a "yum -y update"
+ansible multi -b -m shell -a "cat /var/log/messages | grep ansible-command | wc -l"
+
+vagrant destroy -fg
+
+
+
+
 ansible app -b -m yum -a "name=mysql-python state=present"
 ansible app -b -m yum -a "name=python-setuptools state=present"
 ansible app -b -m easy_install -a "name=django"
