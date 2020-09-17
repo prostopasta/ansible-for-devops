@@ -52,6 +52,8 @@ ansible multi -b -m service -a "name=chronyd state=started"
 ansible multi -b -B 3600 -P 0 -a "yum -y update"
 ansible multi -b -m shell -a "cat /var/log/messages | grep ansible-command | wc -l"
 
+ansible-inventory --list
+
 vagrant destroy -fg
 
 
