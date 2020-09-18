@@ -1,6 +1,8 @@
 ---
 - name: Enable Apache rewrite module (required for Drupal).
-  apache2_module: name=rewrite state=present
+  apache2_module:
+    name: rewrite
+    state: present
   notify: restart apache
 
 - name: Add Apache virtualhost for Drupal 8.
